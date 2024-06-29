@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-Summarization</title>
+</head>
+<style rel="stylesheet" href="../static/style.css"></style>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }    
+    body{
+        background-color: rgb(247, 216, 159);
+    }
+    .container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 90px;
+    }
+    .box{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        gap: 10px;
+    }
+    .heading{
+        background-color: rgb(255, 128, 0);
+        color: white;
+        font-size: 1.8rem;
+        padding: 10px;
+        margin-bottom: 80px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+    .btn{
+        background-color: rgb(255, 128, 0);
+        border: none;
+        height: 30px;
+        width: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 10px;
+    }
+    .slider{
+        height: 14px;
+        width: 300px;
+        margin-top: 5px;
+    }
+    .title{
+        color: orange;
+        font-size: 1.4rem;
+    }
+</style>
+<body>
+    <header>
+        <h3 class="heading">Text-Summarization</h3>
+    </header>
+    <div class="container">
+        <form class="box" action="{{url_for('Summarize')}}" method="post">
+            <textarea name="data" class="text-area" cols="50" rows="20" placeholder="Enter your text" required="required"></textarea>
+            <input type="range" min="20" name="maxl" max="1000" value="100" class="slider" id="myRange">
+            <div class="btn-div">
+                <button type="submit" class="btn">Submit</button>
+                <button type="reset" class="btn">Clear</button>
+            </div>
+        </form>
+        <div class="box">
+            <h3 class="title">Sumarized Text: </h3>
+            <textarea name="data" id="textToCopy" disabled class="text-area" cols="50" rows="20" placeholder="Enter your text" required="required">{{result}}</textarea>
+            <button class="copy-btn btn" onclick="copyText()">Copy Text</button>
+        </div>
+    </div>
+</body>
+<script>
+    function copyText() {
+        var copyText = document.getElementById("textToCopy");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); 
+        document.execCommand("copy");
+        alert("Copied the text: " + copyText.value);
+    }
+</script>
+</html>
