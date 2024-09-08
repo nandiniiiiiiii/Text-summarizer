@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.vscode/
+.env
+venv/
+.venv/
+Dockerfile
+*.log
+*.db
